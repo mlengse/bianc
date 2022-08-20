@@ -12,8 +12,27 @@ module.exports = async (isPM2) => {
 
     await Promise.all([
       app.listSasaran(),
-      // app.initBrowser()
+      app.initBrowser()
     ])
+
+    for(sasaran of app.listBelum){
+      sasaran = Object.assign({}, sasaran, app.verifynik(sasaran.nik))
+      if(!sasaran.salah){
+        await app.checkNIK({sasaran})
+
+        if(app.response && app.response.nik === sasaran.nik){
+          sasaran = Object.assign({}, sasaran, app.response, {
+            validasi_bian: sasaran.name
+          })
+        }
+
+        if(sasaran.validasi_bian !== '#N/A'){
+          await app.inputValidasi({sasaran})
+        }
+  
+      }
+
+    }
 
     await app.close(isPM2)
 

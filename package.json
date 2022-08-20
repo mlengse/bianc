@@ -19,6 +19,7 @@
   "dependencies": {
     "dotenv": "^16.0.1",
     "googleapis": "^106.0.0",
-    "ora": "^5.0.0"
+    "ora": "^5.0.0",
+    "puppeteer-core": "^16.2.0"
   }
 }

@@ -5,12 +5,12 @@ exports._listSasaran = async ({ that }) =>{
   })
 
   if(ret.length){
-    console.log(ret)
-    // let sudah = ret.filter(k => k.status && k.status.toLowerCase().includes('sudah booster'))
-    // if(sudah.length){
-    //   that.listSudah = [...that.listSudah, ...sudah]
-    //   that.spinner.succeed(`${file.nama} sudah booster ${sudah.length}`)
-    // }
+    that.spinner.succeed(`sasaran data found: ${ret.length}`)
+    let belum = ret.filter(k => k.validasi_bian && k.validasi_bian.includes('#N/A'))
+    if(belum.length){
+      that.listBelum = [...belum]
+      that.spinner.succeed(`belum bian ${belum.length}`)
+    }
     // let kontak = ret.filter(k => !k.status && k.nik)
     // if(kontak.length){
     //   that.listKontak = [...that.listKontak, ...kontak]
@@ -21,19 +21,16 @@ exports._listSasaran = async ({ that }) =>{
 
 }
 
-// exports._insertStatus =  async ({ that, kontak }) => {
-//   if(kontak.etiket && !kontak.status) {
-//     kontak.status = that.getStatus(kontak.etiket)
-//     let res = await that.insertCell({
-//       spreadsheetId: kontak.SheetID,
-//       range: `${kontak.sheet}!B${kontak.row}`,
-//       values: kontak.status
+exports._inputValidasi =  async ({ that, sasaran }) => {
+  let res = await that.insertCell({
+    spreadsheetId: sasaran.SheetID,
+    range: `${sasaran.sheet}!H${sasaran.row}`,
+    values: sasaran.name
 
-//     })
-//     that.spinner.succeed(`${kontak.id} ${kontak.nik}, ${kontak.nama}, ${kontak.status}, saved ${res.statusText}`)
-//     return res
-//   }
-// }
+  })
+  that.spinner.succeed(`${JSON.stringify(sasaran)}, saved ${res.statusText}`)
+  return res
+}
 
 // exports._insertTiket =  async ({ that, kontak }) => {
 //   if(kontak.etiket) {
