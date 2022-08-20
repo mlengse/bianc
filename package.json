@@ -1,0 +1,24 @@
+{
+  "name": "bianc",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlengse/bianc.git"
+  },
+  "author": "mlengse",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mlengse/bianc/issues"
+  },
+  "homepage": "https://github.com/mlengse/bianc#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "googleapis": "^106.0.0",
+    "ora": "^5.0.0"
+  }
+}
